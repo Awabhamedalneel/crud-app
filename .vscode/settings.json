@@ -1,3 +1,38 @@
 {
-    "folder-color.pathColors": []
+  "folder-color.pathColors": [],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact"
+  ],
+  "files.autoSave": "onFocusChange",
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "files.associations": {
+    "*.js": "javascriptreact"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#1a1a2e",
+    "titleBar.activeForeground": "#ffffff"
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "npm.enableScriptExplorer": true,
+  "npm.packageManager": "npm"
 }
