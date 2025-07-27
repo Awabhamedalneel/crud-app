@@ -21,10 +21,6 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
-  "workbench.colorCustomizations": {
-    "titleBar.activeBackground": "#1a1a2e",
-    "titleBar.activeForeground": "#ffffff"
-  },
   "workbench.iconTheme": "material-icon-theme",
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,

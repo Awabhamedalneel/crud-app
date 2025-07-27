@@ -1,18 +1,13 @@
 {
-  "name": "mern-app",
-  "homepage": "https://awab-pro.vercel.app",
+  "name": "mern-app-client",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "deploy": "vercel --prod",
-    "predeploy": "npm run build"
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "dependencies": {
     "axios": "^1.11.0",
@@ -31,7 +26,6 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
-    "vercel": "^44.6.3",
     "vite": "^7.0.4"
   }
 }
