@@ -2,6 +2,8 @@
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3400';
+
 const CreateUser = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -61,7 +63,7 @@ const CreateUser = () => {
     setIsSubmitting(true);
     
     try {
-      await axios.post("http://localhost:3400/createusers", formData);
+      await axios.post(`${API_URL}/createusers`, formData);
       navigate("/");
     } catch (err) {
       console.error('Error creating user:', err);

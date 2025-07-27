@@ -8,25 +8,31 @@ const app =express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/crud")
+// For deployment, use an environment variable for the MongoDB connection string
+mongoose.connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/crud")
 
-app.get("/getusers",async(req,res)=>{
+app.get("/getusers", async (req, res) => {
     users.find({})
-    .then(users=>res.json(users))
-    .catch(err=>res.json(err))
-})
+        .then(users => res.json(users))
+        .catch(err => res.status(400).json({ message: err.message }));
+});
 
-app.get("/getusers/:id",async(req,res)=>{
+app.get("/getusers/:id", async (req, res) => {
     users.findById(req.params.id)
-    .then(users=>res.json(users))
-    .catch(err=>res.json(err))
-})  
+        .then(user => {
+            if (!user) {
+                return res.status(404).json({ message: "User not found" });
+            }
+            res.json(user);
+        })
+        .catch(err => res.status(400).json({ message: err.message }));
+});  
 
-app.post("/createusers",async(req,res)=>{
+app.post("/createusers", async (req, res) => {
     users.create(req.body)
-    .then(users => res.json(users))
-    .catch((err)=>res.json(err))    
-})
+        .then(user => res.status(201).json(user))
+        .catch((err) => res.status(400).json({ message: err.message }));
+});
 
 // Update user by ID
 app.put("/updateuser/:id", async (req, res) => {

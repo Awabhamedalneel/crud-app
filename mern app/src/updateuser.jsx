@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3400';
+
 const UpdateUser = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -16,7 +18,7 @@ const UpdateUser = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`http://localhost:3400/getusers/${id}`);
+        const response = await axios.get(`${API_URL}/getusers/${id}`);
         setFormData({
           name: response.data.name,
           email: response.data.email,
@@ -41,7 +43,7 @@ const UpdateUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:3400/updateuser/${id}`, formData);
+      await axios.put(`${API_URL}/updateuser/${id}`, formData);
       navigate('/');
     } catch (err) {
       console.error('Error updating user:', err);

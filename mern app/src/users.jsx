@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaUserPlus, FaEdit, FaTrash, FaUser, FaEnvelope, FaBirthdayCake } from 'react-icons/fa';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3400';
+
 const Users = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -10,7 +12,7 @@ const Users = () => {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get("http://localhost:3400/getusers");
+            const response = await axios.get(`${API_URL}/getusers`);
             setUsers(response.data);
             setError(null);
         } catch (err) {
@@ -34,7 +36,7 @@ const Users = () => {
 
         if (window.confirm('Are you sure you want to delete this user?')) {
             try {
-                const response = await axios.delete(`http://localhost:3400/deleteuser/${id}`);
+                const response = await axios.delete(`${API_URL}/deleteuser/${id}`);
                 
                 if (response.status === 200) {
                     // Only refresh if the deletion was successful
