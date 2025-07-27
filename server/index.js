@@ -1,0 +1,57 @@
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");   
+const users = require("./models/users");
+const port = 3400;
+
+const app =express();
+app.use(cors());
+app.use(express.json());
+
+mongoose.connect("mongodb://127.0.0.1:27017/crud")
+
+app.get("/getusers",async(req,res)=>{
+    users.find({})
+    .then(users=>res.json(users))
+    .catch(err=>res.json(err))
+})
+
+app.get("/getusers/:id",async(req,res)=>{
+    users.findById(req.params.id)
+    .then(users=>res.json(users))
+    .catch(err=>res.json(err))
+})  
+
+app.post("/createusers",async(req,res)=>{
+    users.create(req.body)
+    .then(users => res.json(users))
+    .catch((err)=>res.json(err))    
+})
+
+// Update user by ID
+app.put("/updateuser/:id", async (req, res) => {
+    const { id } = req.params;
+    users.findByIdAndUpdate(id, req.body, { new: true })
+        .then(updatedUser => {
+            if (!updatedUser) {
+                return res.status(404).json({ message: "User not found" });
+            }
+            res.json(updatedUser);
+        })
+        .catch(err => res.status(400).json({ message: err.message }));
+});
+
+// Delete user by ID
+app.delete("/deleteuser/:id", async (req, res) => {
+    const { id } = req.params;
+    users.findByIdAndDelete(id)
+        .then(deletedUser => {
+            if (!deletedUser) {
+                return res.status(404).json({ message: "User not found" });
+            }
+            res.json({ message: "User deleted successfully" });
+        })
+        .catch(err => res.status(400).json({ message: err.message }));
+});
+
+app.listen(port,()=>console.log(`server running on port ${port}`));
